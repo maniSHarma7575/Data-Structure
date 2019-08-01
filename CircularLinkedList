@@ -56,6 +56,10 @@ Node* insertend(Node* head,int data)
 }
 void printList(Node * head)
 {
+	if(head==NULL)
+	{
+	return ;
+	}
 	Node * temp=head;
 	while(temp->next!=head)
 	{
@@ -144,6 +148,51 @@ void printMiddle(Node* head,Node* hearef1,Node* headref2)
 	cout<<endl;
 	printList(headref2);
 }
+
+//Inserting element in Sorted Manner
+Node* sortedInsert(Node* head,Node* new_node)
+{
+	Node* current=head;
+	if(current==NULL)
+	{
+		new_node->next=new_node;
+		head=new_node;
+	}
+	else if(head->data>new_node->data)
+	{
+		Node* temp=head;
+		while(temp->next!=head)
+		{
+			temp=temp->next;
+			
+		}
+		temp->next=new_node;
+		new_node->next=head;
+		head=new_node;
+	}
+	else
+	{
+		Node* pre=NULL;
+		while(current->next!=head && current->data<=new_node->data )
+		{
+			pre=current;
+			current=current->next;
+		}
+		if(current->next==head && current->data<new_node->data)
+		{
+		current->next=new_node;
+		new_node->next=head;
+		}
+		else
+		{
+		new_node->next=pre->next;
+		pre->next=new_node;
+		}
+	}
+	return head;
+}
+
+
 int main() {
 	Node* head=NULL;
 	Node* head1=NULL;
