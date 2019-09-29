@@ -174,6 +174,23 @@ int tnode(Node* node)
 		return tnode(node->left)+tnode(node->right)+1;
 	}
 }
+/*Total Number of Internal Nodes*/
+	int internalNodes()
+{
+	return inodes(root);
+}
+int inodes(Node* node)
+{
+	if(node==NULL)
+	{
+		return 0;
+	}
+	if(node->left==NULL && node->right== NULL)return 0;
+	else
+	{
+		return inodes(node->left)+inodes(node->right)+1;
+	}
+}
 };
 
 int main() {
@@ -197,5 +214,6 @@ int main() {
 	tree.inorder();
 	cout<<endl<<" "<<tree.height();
 	cout<<endl<<" "<<tree.totalnodes();
+	cout<<endl<<" "<<tree.internalNodes();
 	return 0;
 }
